@@ -1,3 +1,5 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -19,20 +21,27 @@ public class TvNetTests {
 
     private final By COMMENTS_PAGE_COUNT = By.xpath(".//span[contains(@class, 'article-comments')]");
 
+    private final Logger LOGGER = LogManager.getLogger(this.getClass());
+
     @Test
     public void articleTitleCommentsCheck() {
+        LOGGER.info("This test is checking titles and comment count");
         System.setProperty("webdriver.chrome.driver", "c://chromedriver.exe");
+
+        LOGGER.info("Opening browser");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
+
+        LOGGER.info("Opening home page");
         driver.get("https://tvnet.lv");
 
-        //find articles
+        LOGGER.info("Getting all articles");
         List<WebElement> articles = driver.findElements(ARTICLE);
 
-        //find 3rd
+        LOGGER.info("Get 3rd one");
         WebElement article = articles.get(2);
 
-        //find title
+        LOGGER.info("Getting title");
         String homePageTitle = article.findElement(TITLE).getText();
 
         //find comments count
