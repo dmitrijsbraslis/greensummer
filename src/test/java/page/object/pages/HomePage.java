@@ -18,7 +18,7 @@ public class HomePage {
     }
 
     public String getTitleById(int id) {
-        return getArticleById(id).findElement(TITLE).getText();
+        return getArticleById(id).findElement(TITLE).getText().trim();
     }
 
     public ArticlePage openArticle(int id) {
